@@ -3,6 +3,7 @@ var TCGAPI = "a91c497f-ee1d-402a-b493-ceff6564f7bb"
 var searchedPokemon;
 
 const decimeterToInches = 3.94;
+const hectogramsToPounds = 0.22;
 
 function getPokemonData(event) {
 
@@ -28,17 +29,42 @@ function getPokemonData(event) {
                     var currentDivEl = document.createElement('div');
                     var currentImgEl = document.createElement('img');
                     currentImgEl.setAttribute('src',tcgdata.data[0].images.small);
-
                     currentDivEl.append(currentImgEl);
+
+                    var headerEl = document.createElement('h1');
+                    var pokeName = pokedata.name
+                    pokeName = pokeName.charAt(0).toUpperCase() + pokeName.substring(1);
+                    headerEl.textContent = pokeName;
+                    currentDivEl.append(headerEl);
+
+                    var spriteImgEl = document.createElement('img');
+                    var iconSource = pokedata.sprites.front_default
+                    spriteImgEl.setAttribute('src',iconSource);
+                    currentDivEl.append(spriteImgEl);
+                    
+
+                    
                     var infoListEl = document.createElement('ul');
                     var typeListItemEl = document.createElement('li');
-                    typeListItemEl.textContent = "Type: " + pokedata.types[0].type.name;
+                    var pokeType = pokedata.types[0].type.name.toString();
+                    pokeType =  pokeType.charAt(0).toUpperCase() + pokeType.substring(1);
+                    typeListItemEl.textContent = "Type: " + pokeType;
                     infoListEl.append(typeListItemEl);
 
                     var heightListItemEl = document.createElement('li');
                     var pokeHeight = (pokedata.height * decimeterToInches)
                     heightListItemEl.textContent = "Height: " + pokeHeight + " In or " + Math.floor(pokeHeight/12) + " Ft " + Math.round(pokeHeight % 12) + " In"
                     infoListEl.append(heightListItemEl)
+
+                    var weightListItemEl = document.createElement('li');
+                    var pokeWeight = (pokedata.weight * hectogramsToPounds);
+                    weightListItemEl.textContent = "Weight: " + pokeWeight + " Lbs";
+                    infoListEl.append(weightListItemEl);
+
+                    var addToTeamBtn = document.createElement('button');
+                    addToTeamBtn.textContent = "Add to team";
+                    
+                    infoListEl.append(addToTeamBtn);
 
                     currentDivEl.append(infoListEl);
                     $("#current-pokemon").append(currentDivEl);
