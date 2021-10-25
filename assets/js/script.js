@@ -10,7 +10,7 @@ const hectogramsToPounds = 0.22;
 
 //Function to grab searched pokemon data
 function getPokemonData(newPokemon) {
-
+    $('#current-pokemon').text('')
     //Set input value to the searched poekmon variable. Converts to lowercase
     searchedPokemon = newPokemon
 
@@ -19,12 +19,17 @@ function getPokemonData(newPokemon) {
     //Build query URL for TCG API. Limits to one card per search, or else we get a list of cards for each pokemon
     var TCGURL = "https://api.pokemontcg.io/v2/cards?q=name:" + searchedPokemon + "&pageSize=1";
 
+    savedPokemon(searchedPokemon)
+    
+
     //API call to Poke API first. Note the poke in front of variable names
     fetch(pokeApiUrl)
         .then(function (pokeresponse) {
             if(pokeresponse.status === 404){
                 alert("Pokemon name does not exist, check your spelling");
-            }
+            } 
+
+            
             return pokeresponse.json();
         })
         .then(function (pokedata) {
@@ -120,10 +125,11 @@ function getPokemonData(newPokemon) {
                     $("#current-pokemon").append(currentDivEl);
 
                 })
-
+            
         })
-
+    
 }
+
 
 //Add to team button. Creates a card and adds to the team
 //Lists 4 moves, appends 2 buttons, shuffle moves and remove from team
@@ -133,6 +139,7 @@ function addToTeam(){
     console.log("Add Button Click Success");
 
 }
+
 $("#search-button").on("click",function(event){
     console.log("Search Click Success");
     event.preventDefault();
@@ -141,42 +148,57 @@ $("#search-button").on("click",function(event){
     getPokemonData(searchedPokemon);
 })
 
+$('#search-history').on('click', function(event){
+    console.log(event.target.textContent)
+    var btnText = event.target.textContent
+    getPokemonData(btnText)
+})
+
 function makeButtons() {
-    for (var i = 0; i < pokeButtons.length; i++) {
-        const pokePast = pokeButtons[i];
-        var newBtn = document.createElement("button");
+    $('#search-history').text('')
+    for (var i = 0; i < localStorage.length; i++) {
+        
+        var newBtnEl = document.createElement("button");
+        var listItemEl = document.createElement('li')
+        searchedPokemon = localStorage.getItem('search-history' + i)
+        newBtnEl.textContent = searchedPokemon
+        // newBtn.setAttribute("data-value", pokePast)
 
-        newBtn.textContent = pokePast
-        newBtn.setAttribute("data-value", pokePast)
-
-        newBtn.addEventListener("click", function () {
-            var searchPoke = this.getAttribute("data-value");
-            searchedPokemon(searchPoke)
-        });
-        previousPokemonContainer.append(newBtn)
+        listItemEl.append(newBtnEl);
+        previousPokemonContainer.append(listItemEl);
     }
-    console.log(pokeButtons)
-    localStorage.setItem(searchedPokemon, JSON.stringify(pokeButtons))
+    
 }
+
+function savedPokemon (newPokemon) {
+    searchedPokemon = $("#search-pokemon").val();
+    var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
+
+    fetch(pokeApiUrl).then(function(response){
+        if(response.status === 404) {
+            console.log('something')
+        } else {
+            makeButtons()
+            console.log('something2')
+            var pokeExists = false
+
+    for(var i =0; i < localStorage.length; i++){
+        if(localStorage["search-history" +i] === newPokemon){
+            pokeExists = true;
+            break;
+        }
+    }
+    if(pokeExists === false){
+        localStorage.setItem('search-history' + localStorage.length, newPokemon);
+    }
+        }
+    }) 
+}
+
+
 
 makeButtons()
 
-
-
-
-// fetch(queryURL)
-//     .then(function(response){
-//         return response.json()
-//     })
-//         .then(function(data){
-//             console.log(data)
-
-//             imageEl.setAttribute("src",data.sprites.front_shiny);
-
-//         })
-// divEl.append(imageEl);
-
-// $("#current-pokemon").append(divEl);
 
 
         
