@@ -1,0 +1,12 @@
+#current-pokemon{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* #current-team{
+    display: flex;
+    border-style: solid;
+    box-sizing: border-box;
+    height: 400px;
+    width: 400px
+} */
