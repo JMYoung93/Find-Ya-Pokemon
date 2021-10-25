@@ -2,6 +2,8 @@
 var TCGAPI = "a91c497f-ee1d-402a-b493-ceff6564f7bb"
 //Variable holds searched pokemon name
 var searchedPokemon;
+var pokeButtons = [];
+var previousPokemonContainer = document.querySelector("#search-history");
 //Conversions for API info to Freedom Units (Amurica!)
 const decimeterToInches = 3.94;
 const hectogramsToPounds = 0.22;
@@ -139,6 +141,25 @@ $("#search-button").on("click",function(event){
     getPokemonData(event);
 })
 
+function makeButtons() {
+    for (var i = 0; i < pokeButtons.length; i++) {
+        const pokePast = pokeButtons[i];
+        var newBtn = document.createElement("button");
+
+        newBtn.textContent = pokePast
+        newBtn.setAttribute("data-value", pokePast)
+
+        newBtn.addEventListener("click", function () {
+            var searchPoke = this.getAttribute("data-value");
+            searchedPokemon(searchPoke)
+        });
+        previousPokemonContainer.append(newBtn)
+    }
+    console.log(pokeButtons)
+    localStorage.setItem(searchedPokemon, JSON.stringify(pokeButtons))
+}
+
+makeButtons()
 
 
 
