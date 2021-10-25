@@ -33,14 +33,21 @@ function getPokemonData(event) {
                 }).then(function (tcgdata) {
                     console.log(tcgdata);
 
-                    //Add div element to current-pokemon HTML element
-                    var currentDivEl = document.createElement('div');
-
+                    //Div to hold the Trading Card Game image
+                    var TCGCardDivEl = document.createElement('div');
+                    TCGCardDivEl.setAttribute('style', 'display: inline');
 
                     //Trading Card Game image
                     var currentImgEl = document.createElement('img');
                     currentImgEl.setAttribute('src',tcgdata.data[0].images.small);
-                    currentDivEl.append(currentImgEl);
+                    TCGCardDivEl.append(currentImgEl);
+
+                    $("#current-pokemon").append(TCGCardDivEl);
+
+
+                    //Add div element to current-pokemon HTML element
+                    var currentDivEl = document.createElement('div');
+                    currentDivEl.setAttribute('style', 'display: inline');
 
                     //Header to show Pokemon name
                     var headerEl = document.createElement('h2');
@@ -118,7 +125,8 @@ function getPokemonData(event) {
 //Add to team button. Creates a card and adds to the team
 //Lists 4 moves, appends 2 buttons, shuffle moves and remove from team
 function addToTeam(){
-    var cardCounter
+    var cardCounter = 0;
+    const maxTeamSize = 6;
     console.log("Add Button Click Success");
 
 }

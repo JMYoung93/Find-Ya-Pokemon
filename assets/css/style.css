@@ -1,0 +1,4 @@
+#current-pokemon{
+    display: flex;
+    justify-content: space-evenly;
+}
