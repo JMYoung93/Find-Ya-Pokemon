@@ -41,6 +41,7 @@ function getPokemonData(event) {
                     var currentImgEl = document.createElement('img');
                     currentImgEl.setAttribute('src',tcgdata.data[0].images.small);
                     TCGCardDivEl.append(currentImgEl);
+                    TCGCardDivEl.setAttribute('style', 'display: inline');
 
                     $("#current-pokemon").append(TCGCardDivEl);
 
