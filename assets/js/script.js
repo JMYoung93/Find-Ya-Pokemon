@@ -9,10 +9,10 @@ const decimeterToInches = 3.94;
 const hectogramsToPounds = 0.22;
 
 //Function to grab searched pokemon data
-function getPokemonData(event) {
+function getPokemonData(newPokemon) {
 
     //Set input value to the searched poekmon variable. Converts to lowercase
-    searchedPokemon = $("#search-pokemon").val().toLowerCase();
+    searchedPokemon = newPokemon
 
     //Build query URL for Poke API
     var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
@@ -138,7 +138,7 @@ $("#search-button").on("click",function(event){
     event.preventDefault();
     searchedPokemon = $("#search-pokemon").val();
     $("#current-pokemon").empty();
-    getPokemonData(event);
+    getPokemonData(searchedPokemon);
 })
 
 function makeButtons() {
