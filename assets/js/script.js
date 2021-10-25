@@ -141,7 +141,7 @@ function addToTeam(){
 $("#search-button").on("click",function(event){
     console.log("Search Click Success");
     event.preventDefault();
-    searchedPokemon = $("#search-pokemon").val();
+    searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();
     $("#current-pokemon").empty();
     getPokemonData(searchedPokemon);
 })
@@ -169,7 +169,7 @@ function makeButtons() {
 }
 
 function savedPokemon (newPokemon) {
-    searchedPokemon = $("#search-pokemon").val();
+    searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();
     var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
 
     fetch(pokeApiUrl).then(function(response){
