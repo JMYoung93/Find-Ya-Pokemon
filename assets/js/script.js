@@ -148,7 +148,7 @@ function addToTeam(){
         var cardImgEl = document.createElement("img")
         var imgSource = data.sprites.front_default
         var imgItemEl = document.createElement("li")
-        imgItemEl.setAttribute("id", "pokeCard")
+        cardEl.setAttribute("id", "pokeCard")
         cardImgEl.setAttribute('src', imgSource)
         cardEl.append(cardImgEl)
         imgItemEl.append(cardEl)
