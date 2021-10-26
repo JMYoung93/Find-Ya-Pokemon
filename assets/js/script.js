@@ -58,6 +58,7 @@ function getPokemonData(newPokemon) {
 
                     //Header to show Pokemon name
                     var headerEl = document.createElement('h2');
+                    headerEl.setAttribute('id', 'pokeHeader')
                     var pokeName = pokedata.name
                     pokeName = pokeName.charAt(0).toUpperCase() + pokeName.substring(1);
                     headerEl.textContent = pokeName;
@@ -136,6 +137,69 @@ function addToTeam(){
     var cardCounter = 0;
     const maxTeamSize = 6;
     console.log("Add Button Click Success");
+    searchedPokemon = $('#pokeHeader').text().toLowerCase().trim()
+    var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
+
+    fetch(pokeApiUrl).then(function (response){
+        return response.json()
+    }).then(function(data){
+        var cardEl = document.createElement("div")
+        cardEl.setAttribute("class", "card")
+        var cardImgEl = document.createElement("img")
+        var imgSource = data.sprites.front_default
+        var imgItemEl = document.createElement("li")
+        cardImgEl.setAttribute('src', imgSource)
+        cardEl.append(cardImgEl)
+        imgItemEl.append(cardEl)
+        $('#pokePick').append(imgItemEl)
+
+        var attackList = document.createElement('ul')
+
+        var attackListItemEl1 = document.createElement('li');
+        var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
+        var pokeAttack = data.moves[randomAttackIndex].move.name;
+        pokeAttack = pokeAttack.charAt(0).toUpperCase() + pokeAttack.substring(1);
+        attackListItemEl1.textContent = "#1: " + pokeAttack;
+        attackList.append(attackListItemEl1)
+
+        
+        var attackListItemEl2 = document.createElement('li');
+        var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
+        var pokeAttack = data.moves[randomAttackIndex].move.name;
+        pokeAttack = pokeAttack.charAt(0).toUpperCase() + pokeAttack.substring(1);
+        attackListItemEl2.textContent = "#2: " + pokeAttack;
+        attackList.append(attackListItemEl2)
+
+        
+        var attackListItemEl3 = document.createElement('li');
+        var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
+        var pokeAttack = data.moves[randomAttackIndex].move.name;
+        pokeAttack = pokeAttack.charAt(0).toUpperCase() + pokeAttack.substring(1);
+        attackListItemEl3.textContent = "#3: " + pokeAttack;
+        attackList.append(attackListItemEl3)
+
+        
+        var attackListItemEl4 = document.createElement('li');
+        var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
+        var pokeAttack = data.moves[randomAttackIndex].move.name;
+        pokeAttack = pokeAttack.charAt(0).toUpperCase() + pokeAttack.substring(1);
+        attackListItemEl4.textContent = "#4: " + pokeAttack;
+        attackList.append(attackListItemEl4)
+
+        cardEl.append(attackList)
+
+        var removeBtn = document.createElement('button')
+        removeBtn.textContent = "Remove"
+        removeBtn.addEventListener('click', function(event){
+        console.log('Remove Success')
+        event.target.parentElement.remove()
+        })
+        cardEl.append(removeBtn)
+
+    })
+
+    
+
 
 }
 $("#search-button").on("click",function(event){
