@@ -198,6 +198,11 @@ function addToTeam(){
         })
         cardEl.append(removeBtn)
 
+        
+        // Saving cards to local storage and 'getting' them when user refreshes -JY
+        // localStorage.setItem("card", cardEl)
+        // localStorage.getItem("card", cardEl)
+
     })
 
     
@@ -224,13 +229,14 @@ function makeButtons() {
     for (var i = 0; i < localStorage.length; i++) {
         
         var newBtnEl = document.createElement("button");
-        var listItemEl = document.createElement('li')
+        // var listItemEl = document.createElement('btn')
         searchedPokemon = localStorage.getItem('search-history' + i)
         newBtnEl.textContent = searchedPokemon
-        // newBtn.setAttribute("data-value", pokePast)
+        newBtnEl.setAttribute("data-value", "pokePast")
 
-        listItemEl.append(newBtnEl);
-        previousPokemonContainer.append(listItemEl);
+        // listItemEl.append(newBtnEl);
+
+        previousPokemonContainer.append(newBtnEl);
     }
     
 }
