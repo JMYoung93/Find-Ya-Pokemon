@@ -4,9 +4,25 @@
 }
 
 #current-team{
-    display: flex;
-    border-style: solid;
+    display:flex;
+    justify-content: center; 
+     /* float: right; */
+    /* border-style: solid; */
     box-sizing: border-box;
-    height: 400px;
-    width: 400px
+    height: 35%;
+    width: auto;
 } 
+#pokePick{
+    display: flex; 
+    height: 100%;
+    width: auto;
+    box-sizing: auto;
+}
+#content-left{
+    height: 1vh;
+    border-style: solid;
+    width: 15%;
+    float: left;
+
+
+}
