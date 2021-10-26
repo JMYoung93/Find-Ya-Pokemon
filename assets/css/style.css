@@ -20,9 +20,8 @@
 }
 #content-left{
     height: 1vh;
+    display: flex;
     border-style: solid;
     width: 15%;
     float: left;
-
-
 }
