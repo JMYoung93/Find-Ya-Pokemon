@@ -232,7 +232,8 @@ function makeButtons() {
         // var listItemEl = document.createElement('btn')
         searchedPokemon = localStorage.getItem('search-history' + i)
         newBtnEl.textContent = searchedPokemon
-        newBtnEl.setAttribute("data-value", "pokePast")
+        newBtnEl.setAttribute('id', 'historyBtn')
+    
 
         // listItemEl.append(newBtnEl);
 

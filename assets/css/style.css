@@ -18,10 +18,17 @@
     width: auto;
     box-sizing: auto;
 }
-.menu{
+.content-left{
     height: 1vh;
-    display: flex;
-    border-style: solid;
-    width: 15%;
+    width: 25%;
     float: left;
+    display:flex;
+    display:block;
+}
+#historyBtn{
+    display: block;
+}
+#search-pokemon{
+    display:flex;
+    display: inline;
 }
