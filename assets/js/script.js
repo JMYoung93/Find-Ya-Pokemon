@@ -48,6 +48,7 @@ function getPokemonData(newPokemon) {
                     var currentImgEl = document.createElement('img');
                     currentImgEl.setAttribute('src',tcgdata.data[0].images.small);
                     TCGCardDivEl.append(currentImgEl);
+                    TCGCardDivEl.setAttribute('style', 'display: inline');
 
                     $("#current-pokemon").append(TCGCardDivEl);
 
@@ -206,6 +207,7 @@ function addToTeam(){
 
 
 }
+
 $("#search-button").on("click",function(event){
     console.log("Search Click Success");
     event.preventDefault();
@@ -227,6 +229,7 @@ function makeButtons() {
         var newBtnEl = document.createElement("button");
         // var listItemEl = document.createElement('btn')
         searchedPokemon = localStorage.getItem('search-history' + i)
+<<<<<<< HEAD
         if(searchedPokemon == ""){
             console.log('nothing')
         }else {newBtnEl.textContent = searchedPokemon
@@ -237,6 +240,15 @@ function makeButtons() {
             previousPokemonContainer.append(newBtnEl);}
         
         
+=======
+        newBtnEl.textContent = searchedPokemon
+        newBtnEl.setAttribute('id', 'historyBtn')
+    
+
+        // listItemEl.append(newBtnEl);
+
+        previousPokemonContainer.append(newBtnEl);
+>>>>>>> 2adee238f5f6e37639fb11e8fe078d6e4ac3f465
     }
     
 }
@@ -270,22 +282,6 @@ function savedPokemon (newPokemon) {
 
 makeButtons()
 
-
-
-
-// fetch(queryURL)
-//     .then(function(response){
-//         return response.json()
-//     })
-//         .then(function(data){
-//             console.log(data)
-
-//             imageEl.setAttribute("src",data.sprites.front_shiny);
-
-//         })
-// divEl.append(imageEl);
-
-// $("#current-pokemon").append(divEl);
 
 
         
