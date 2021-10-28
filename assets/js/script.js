@@ -218,7 +218,7 @@ function savedTeamCards(newName, newSprite, move1, move2, move3, move4) {
     }
 
     searchedPokemon = newName
-    var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
+    
             var pokeExists = false
 
     for(var i =0; i < localStorage.length; i++){
@@ -247,7 +247,13 @@ $("#search-button").on("click",function(event){
 $('#search-history').on('click', function(event){
     console.log(event.target.textContent)
     var btnText = event.target.textContent
-    getPokemonData(btnText)
+    if(btnText === ""){
+        console.log('nothing')
+    }
+    else{
+        getPokemonData(btnText) 
+    }
+    
 })
 
 function makeButtons() {
@@ -256,13 +262,17 @@ function makeButtons() {
             var newBtnEl = document.createElement("button");
             // var listItemEl = document.createElement('btn')
             searchedPokemon = localStorage.getItem('search-history' + i)
-            newBtnEl.textContent = searchedPokemon
-            newBtnEl.setAttribute('id', 'historyBtn')
+            if(searchedPokemon){
+                newBtnEl.textContent = searchedPokemon
+                newBtnEl.setAttribute('id', 'historyBtn')
+            
         
-    
-            // listItemEl.append(newBtnEl);
-    
-            previousPokemonContainer.append(newBtnEl);
+                // listItemEl.append(newBtnEl);
+        
+                previousPokemonContainer.append(newBtnEl);
+                console.log(searchedPokemon);
+            }
+           
             
         }
         console.log($("#search-history").children())
@@ -275,8 +285,10 @@ function makeButtons() {
         }
     }    
 
+var searchHistory = []
+
 function savedPokemon (newPokemon) {
-    searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();
+    searchedPokemon = newPokemon;
     var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
 
     fetch(pokeApiUrl).then(function(response){
@@ -294,7 +306,8 @@ function savedPokemon (newPokemon) {
         }
     }
     if(pokeExists === false){
-        localStorage.setItem('search-history' + localStorage.length, newPokemon);
+        searchHistory.push(newPokemon);
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
     }
         }
     }) 
