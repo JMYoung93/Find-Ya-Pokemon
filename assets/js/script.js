@@ -255,13 +255,22 @@ $('#search-history').on('click', function(event){
     }
     
 })
+var searchHistory = []
 
+function initialLoad(){
+    var pokemonsSearchedBefore = localStorage.getItem("searchHistory")
+    if(pokemonsSearchedBefore){
+        searchHistory = JSON.parse(pokemonsSearchedBefore)
+    }
+}
+
+initialLoad()
 function makeButtons() {
     $('#search-history').text('')
-    for (var i = 0; i < localStorage.length; i++) {
+    for (var i = 0; i < searchHistory.length; i++) {
             var newBtnEl = document.createElement("button");
             // var listItemEl = document.createElement('btn')
-            searchedPokemon = localStorage.getItem('search-history' + i)
+            searchedPokemon = searchHistory[i]
             if(searchedPokemon){
                 newBtnEl.textContent = searchedPokemon
                 newBtnEl.setAttribute('id', 'historyBtn')
@@ -284,30 +293,25 @@ function makeButtons() {
         }
     }    
 
-var searchHistory = []
 
 function savedPokemon (newPokemon) {
     searchedPokemon = newPokemon;
+
     var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
 
     fetch(pokeApiUrl).then(function(response){
         if(response.status === 404) {
             console.log('something')
         } else {
-            makeButtons()
+            console.log(searchHistory.includes(searchedPokemon))
+            if(!searchHistory.includes(searchedPokemon)){
+                searchHistory.push(searchedPokemon)
+             makeButtons()
+             localStorage.setItem("searchHistory", JSON.stringify(searchHistory))
             console.log('something2')
-            var pokeExists = false
-
-    for(var i =0; i < localStorage.length; i++){
-        if(localStorage["search-history" +i] === newPokemon){
-            pokeExists = true;
-            break;
-        }
-    }
-    if(pokeExists === false){
-        searchHistory.push(newPokemon);
-        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-    }
+            var pokeExists = false   
+            }
+        
         }
     }) 
 }
