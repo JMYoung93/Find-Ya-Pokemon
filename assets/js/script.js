@@ -218,7 +218,7 @@ function savedTeamCards(newName, newSprite, move1, move2, move3, move4) {
     }
 
     searchedPokemon = newName
-    var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
+    
             var pokeExists = false
 
     for(var i =0; i < localStorage.length; i++){
@@ -262,13 +262,17 @@ function makeButtons() {
             var newBtnEl = document.createElement("button");
             // var listItemEl = document.createElement('btn')
             searchedPokemon = localStorage.getItem('search-history' + i)
-            newBtnEl.textContent = searchedPokemon
-            newBtnEl.setAttribute('id', 'historyBtn')
+            if(searchedPokemon){
+                newBtnEl.textContent = searchedPokemon
+                newBtnEl.setAttribute('id', 'historyBtn')
+            
         
-    
-            // listItemEl.append(newBtnEl);
-    
-            previousPokemonContainer.append(newBtnEl);
+                // listItemEl.append(newBtnEl);
+        
+                previousPokemonContainer.append(newBtnEl);
+                console.log(searchedPokemon);
+            }
+           
             
         }
         console.log($("#search-history").children())
@@ -279,6 +283,8 @@ function makeButtons() {
         }
         }
     }    
+
+var searchHistory = []
 
 function savedPokemon (newPokemon) {
     searchedPokemon = newPokemon;
@@ -299,7 +305,8 @@ function savedPokemon (newPokemon) {
         }
     }
     if(pokeExists === false){
-        localStorage.setItem('search-history' + localStorage.length, newPokemon);
+        searchHistory.push(newPokemon);
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
     }
         }
     }) 
