@@ -222,7 +222,7 @@ function savedTeamCards(newName, newSprite, move1, move2, move3, move4) {
             var pokeExists = false
 
     for(var i =0; i < localStorage.length; i++){
-        if(localStorage["card" + i] === pokeCards.name){
+        if(localStorage["pokeCards" + i] === pokeCards.name){
             pokeExists = true;
             break;
         }
@@ -267,10 +267,11 @@ function makeButtons() {
         }
         console.log($("#search-history").children())
         for(var i = 0; i < $('#search-history').children().length; i++) {
-        if($('#search-history').children()[i].textContent == ''){
+        if($('#search-history').children()[i].textContent === ''){
             $('#search-history').children()[i].remove()
             // console.log($('#search-history').children()[i])
-        }
+
+       
         }
     }    
 
@@ -305,4 +306,4 @@ makeButtons()
 
 
 
-        
+}
