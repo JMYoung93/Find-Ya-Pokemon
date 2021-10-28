@@ -147,18 +147,19 @@ function addToTeam() {
     }).then(function (data) {
         var cardEl = document.createElement("div")
         cardEl.setAttribute("class", "card")
+
         var pokeName = document.createElement('h2')
         pokeName.textContent = data.name
         cardEl.append(pokeName)
 
         var cardImgEl = document.createElement("img")
         var imgSource = data.sprites.front_default
-        var imgItemEl = document.createElement("li")
+        var cardItemEl = document.createElement("li")
         cardEl.setAttribute("id", "pokeCard")
         cardImgEl.setAttribute('src', imgSource)
         cardEl.append(cardImgEl)
-        imgItemEl.append(cardEl)
-        $('#pokePick').append(imgItemEl)
+        cardItemEl.append(cardEl)
+        $('#pokePick').append(cardItemEl)
 
         var attackList = document.createElement('ul')
 
@@ -257,7 +258,7 @@ $('#search-history').on('click', function (event) {
 
 })
 var searchHistory = []
-
+var cardTeamHistory = []
 function initialLoad() {
     var pokemonsSearchedBefore = localStorage.getItem("searchHistory")
     if (pokemonsSearchedBefore) {
