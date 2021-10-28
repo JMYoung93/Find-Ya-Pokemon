@@ -221,7 +221,13 @@ $("#search-button").on("click",function(event){
 $('#search-history').on('click', function(event){
     console.log(event.target.textContent)
     var btnText = event.target.textContent
-    getPokemonData(btnText)
+    if(btnText === ""){
+        console.log('nothing')
+    }
+    else{
+        getPokemonData(btnText) 
+    }
+    
 })
 
 function makeButtons() {
@@ -243,7 +249,7 @@ function makeButtons() {
 }
 
 function savedPokemon (newPokemon) {
-    searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();
+    searchedPokemon = newPokemon;
     var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
 
     fetch(pokeApiUrl).then(function(response){
