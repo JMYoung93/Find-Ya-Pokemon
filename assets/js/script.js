@@ -152,12 +152,12 @@ function addToTeam(){
 
         var cardImgEl = document.createElement("img")
         var imgSource = data.sprites.front_default
-        var imgItemEl = document.createElement("li")
+        var cardItemEl = document.createElement("li")
         cardEl.setAttribute("id", "pokeCard")
         cardImgEl.setAttribute('src', imgSource)
         cardEl.append(cardImgEl)
-        imgItemEl.append(cardEl)
-        $('#pokePick').append(imgItemEl)
+        cardItemEl.append(cardEl)
+        $('#pokePick').append(cardItemEl)
 
         var attackList = document.createElement('ul')
 
@@ -196,11 +196,26 @@ function addToTeam(){
 
         var removeBtn = document.createElement('button')
         removeBtn.textContent = "Remove"
+        removeBtn.setAttribute('pokemonName', data.name)
         removeBtn.addEventListener('click', function(event){
         console.log('Remove Success')
-        event.target.parentElement.remove()
+        var deleteThisPokemon = event.target.getAttribute("pokemonName")
+            
+            var tempTeam = []
+            cardTeamHistory.forEach(function(pokemon){ 
+                if(pokemon.name !== deleteThisPokemon ){
+                    tempTeam.push(pokemon)
+                }
+            })
+
+            cardTeamHistory = tempTeam
+            localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
+        event.target.parentElement.parentElement.remove()
+        console.log($('#pokePick').children())
+        console.log(event.target.parentElement.firstChild.textContent)
         })
-        cardEl.append(removeBtn)
+
+        attackList.append(removeBtn)
 
         savedTeamCards(data.name, imgSource, pokeAttack1, pokeAttack2, pokeAttack3, pokeAttack4)
         
@@ -219,22 +234,78 @@ function savedTeamCards(newName, newSprite, move1, move2, move3, move4) {
 
     searchedPokemon = newName
     
-            var pokeExists = false
-
-    for(var i =0; i < localStorage.length; i++){
-        if(localStorage["pokeCards" + i] === pokeCards.name){
-            pokeExists = true;
-            break;
-        }
-    }
-    if(pokeExists === false){
-        localStorage.setItem('pokeCards' + localStorage.length, JSON.stringify(pokeCards));
-        }
+    if(!cardTeamHistory.includes(pokeCards)){
+        cardTeamHistory.push(pokeCards)
+        localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
+        
+    }     
 }
 
-    
+function makeTeam(){
+    $('#pokePick').text('')
 
+    for(var i = 0; i < cardTeamHistory.length; i++){
+        var newCardEl = document.createElement('div')
+        newCardEl.setAttribute('class', 'card')
 
+        var newCardItemEl = document.createElement('li')
+
+        var newNameEl = document.createElement('h2')
+        newNameEl.textContent = cardTeamHistory[i].name
+        newCardEl.append(newNameEl)
+
+        var newSpriteEl = document.createElement('img')
+        var newImgSource = cardTeamHistory[i].sprite
+        newSpriteEl.setAttribute('src', newImgSource)
+        newCardEl.append(newSpriteEl)
+
+        var savedAttackList = document.createElement('ul')
+
+        var newAttackLi1 = document.createElement('li')
+        newAttackLi1.textContent ="#1: " + cardTeamHistory[i].moveOne
+        savedAttackList.append(newAttackLi1)
+
+        var newAttackLi2 = document.createElement('li')
+        newAttackLi2.textContent ="#2: " + cardTeamHistory[i].moveTwo
+        savedAttackList.append(newAttackLi2)
+
+        var newAttackLi3 = document.createElement('li')
+        newAttackLi3.textContent ="#3: " + cardTeamHistory[i].moveThree
+        savedAttackList.append(newAttackLi3)
+
+        var newAttackLi4 = document.createElement('li')
+        newAttackLi4.textContent ="#4: " + cardTeamHistory[i].moveFour
+        savedAttackList.append(newAttackLi4)
+
+        var removeBtn = document.createElement('button')
+        removeBtn.textContent = "Remove"
+        removeBtn.setAttribute("pokemonName", cardTeamHistory[i].name)
+        removeBtn.addEventListener('click', function(event){
+            //get the pokemon name 
+            var deleteThisPokemon = event.target.getAttribute("pokemonName")
+            
+            var tempTeam = []
+            cardTeamHistory.forEach(function(pokemon){ 
+                if(pokemon.name !== deleteThisPokemon ){
+                    tempTeam.push(pokemon)
+                }
+            })
+
+            cardTeamHistory = tempTeam
+            localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
+            // check if pokemon is in local storage
+            // if it is delete it 
+        console.log('Remove Success')
+        event.target.parentElement.parentElement.remove()
+        })
+        
+        savedAttackList.append(removeBtn)
+
+        newCardEl.append(savedAttackList)
+        newCardItemEl.append(newCardEl)
+        $('#pokePick').append(newCardItemEl)
+    }
+}
 
 $("#search-button").on("click",function(event){
     console.log("Search Click Success");
@@ -256,11 +327,15 @@ $('#search-history').on('click', function(event){
     
 })
 var searchHistory = []
-
+var cardTeamHistory =[]
 function initialLoad(){
     var pokemonsSearchedBefore = localStorage.getItem("searchHistory")
     if(pokemonsSearchedBefore){
         searchHistory = JSON.parse(pokemonsSearchedBefore)
+    }
+    var teamSearchedBefore = localStorage.getItem("cardHistory")
+    if(teamSearchedBefore){
+        cardTeamHistory = JSON.parse(teamSearchedBefore)
     }
 }
 
@@ -294,7 +369,7 @@ function makeButtons() {
         }
     }    
 
-
+}
 function savedPokemon (newPokemon) {
     searchedPokemon = newPokemon;
 
@@ -320,7 +395,4 @@ function savedPokemon (newPokemon) {
 
 
 makeButtons()
-
-
-
-}
+makeTeam()
