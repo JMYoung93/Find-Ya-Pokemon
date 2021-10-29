@@ -147,7 +147,9 @@ function addToTeam(){
         var cardEl = document.createElement("div")
         cardEl.setAttribute("class", "card")
         var pokeName = document.createElement('h2')
-        pokeName.textContent = data.name
+        var name = data.name
+        name = name.charAt(0).toUpperCase() + name.substring(1)
+        pokeName.textContent = name
         cardEl.append(pokeName)
 
         var cardImgEl = document.createElement("img")
@@ -251,7 +253,9 @@ function makeTeam(){
         var newCardItemEl = document.createElement('li')
 
         var newNameEl = document.createElement('h2')
-        newNameEl.textContent = cardTeamHistory[i].name
+        var name = cardTeamHistory[i].name
+        name = name.charAt(0).toUpperCase() + name.substring(1)
+        newNameEl.textContent = name
         newCardEl.append(newNameEl)
 
         var newSpriteEl = document.createElement('img')
