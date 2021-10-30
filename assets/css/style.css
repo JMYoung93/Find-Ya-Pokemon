@@ -2,3 +2,33 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+#current-team{
+    display:flex;
+    justify-content: center; 
+     /* float: right; */
+    /* border-style: solid; */
+    box-sizing: border-box;
+    height: 35%;
+    width: auto;
+} 
+#pokePick{
+    display: flex; 
+    height: 100%;
+    width: auto;
+    box-sizing: auto;
+}
+.content-left{
+    height: 1vh;
+    width: 25%;
+    float: left;
+    display:flex;
+    display:block;
+}
+#historyBtn{
+    display: block;
+}
+#search-pokemon{
+    display:flex;
+    display: inline;
+}
