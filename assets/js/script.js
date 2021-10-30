@@ -111,6 +111,7 @@ function getPokemonData(newPokemon) {
                     var addToTeamBtn = document.createElement('button');
                     addToTeamBtn.textContent = "Add to team";
                     addToTeamBtn.setAttribute('type', 'button');
+                    addToTeamBtn.setAttribute('class', 'button is-rounded is-dark is-outlined')
                     addToTeamBtn.setAttribute('id','add-Btn');
                     infoListEl.append(addToTeamBtn);
 
@@ -173,7 +174,7 @@ function addToTeam(){
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack1 = data.moves[randomAttackIndex].move.name;
         pokeAttack1 = pokeAttack1.charAt(0).toUpperCase() + pokeAttack1.substring(1);
-        attackListItemEl1.textContent = "#1: " + pokeAttack1;
+        attackListItemEl1.textContent = " 1: " + pokeAttack1;
         attackList.append(attackListItemEl1)
 
         
@@ -181,7 +182,7 @@ function addToTeam(){
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack2 = data.moves[randomAttackIndex].move.name;
         pokeAttack2 = pokeAttack2.charAt(0).toUpperCase() + pokeAttack2.substring(1);
-        attackListItemEl2.textContent = "#2: " + pokeAttack2;
+        attackListItemEl2.textContent = " 2: " + pokeAttack2;
         attackList.append(attackListItemEl2)
 
         
@@ -189,7 +190,7 @@ function addToTeam(){
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack3 = data.moves[randomAttackIndex].move.name;
         pokeAttack3 = pokeAttack3.charAt(0).toUpperCase() + pokeAttack3.substring(1);
-        attackListItemEl3.textContent = "#3: " + pokeAttack3;
+        attackListItemEl3.textContent = " 3: " + pokeAttack3;
         attackList.append(attackListItemEl3)
 
         
@@ -197,7 +198,7 @@ function addToTeam(){
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack4 = data.moves[randomAttackIndex].move.name;
         pokeAttack4 = pokeAttack4.charAt(0).toUpperCase() + pokeAttack4.substring(1);
-        attackListItemEl4.textContent = "#4: " + pokeAttack4;
+        attackListItemEl4.textContent = " 4: " + pokeAttack4;
         attackList.append(attackListItemEl4)
 
         cardEl.append(attackList)
@@ -277,19 +278,19 @@ function makeTeam(){
         var savedAttackList = document.createElement('ul')
 
         var newAttackLi1 = document.createElement('li')
-        newAttackLi1.textContent ="#1: " + cardTeamHistory[i].moveOne
+        newAttackLi1.textContent =" 1: " + cardTeamHistory[i].moveOne
         savedAttackList.append(newAttackLi1)
 
         var newAttackLi2 = document.createElement('li')
-        newAttackLi2.textContent ="#2: " + cardTeamHistory[i].moveTwo
+        newAttackLi2.textContent =" 2: " + cardTeamHistory[i].moveTwo
         savedAttackList.append(newAttackLi2)
 
         var newAttackLi3 = document.createElement('li')
-        newAttackLi3.textContent ="#3: " + cardTeamHistory[i].moveThree
+        newAttackLi3.textContent =" 3: " + cardTeamHistory[i].moveThree
         savedAttackList.append(newAttackLi3)
 
         var newAttackLi4 = document.createElement('li')
-        newAttackLi4.textContent ="#4: " + cardTeamHistory[i].moveFour
+        newAttackLi4.textContent =" 4: " + cardTeamHistory[i].moveFour
         savedAttackList.append(newAttackLi4)
 
         var removeBtn = document.createElement('button')
@@ -353,7 +354,7 @@ function makeButtons() {
                 searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
                 newBtnEl.textContent = searchedPokemon
                 newBtnEl.setAttribute('id', 'historyBtn')
-                newBtnEl.setAttribute('class', "button is-fullwidth")
+                newBtnEl.setAttribute('class', "button is-fullwidth is-rounded is-dark is-outlined" )
             
         
                 // listItemEl.append(newBtnEl);
@@ -400,6 +401,12 @@ function savedPokemon (newPokemon) {
 
 makeButtons()
 makeTeam()
+
+$('#clear').on('click', function(event){
+    console.log('clear success')
+    localStorage.removeItem('searchHistory')
+    $('#search-history').text('')
+})
 
 $("#search-button").on("click",function(event){
     console.log("Search Click Success");
