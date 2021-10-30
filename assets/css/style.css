@@ -34,9 +34,6 @@ body{
     height: 1vh;
     width: 25%;
     float: left;
-<<<<<<< HEAD
-}
-=======
     display:flex;
     display:block;
 }
@@ -58,4 +55,3 @@ body{
 .pokecards{
     
 }
->>>>>>> cbd4b1e347bd6f927b3557bece38185da6bdc9a2
