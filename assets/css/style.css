@@ -1,18 +1,8 @@
-*{
-    font-family: 'Pokemon Solid', sans-serif; 
-}
-
-#current-pokemon{                                
+#current-pokemon{
     display: flex;
     justify-content: space-evenly;
 }
-body{
-    background-color: orangered;
-    margin: 0%;
-    color: black;
-    font-size: 18px;
-    
-}
+
 #current-team{
     display:flex;
     justify-content: center; 
@@ -21,8 +11,6 @@ body{
     box-sizing: border-box;
     height: 35%;
     width: auto;
-    background-color: orangered;
-    
 } 
 #pokePick{
     display: flex; 
@@ -43,6 +31,7 @@ body{
 #search-pokemon{
     display:flex;
     display: inline;
+<<<<<<< HEAD
 
 }
 
@@ -53,3 +42,6 @@ body{
 }
 
 
+=======
+}
+>>>>>>> 00394310e1689bf097e012b128ebf1f9c3b915ab

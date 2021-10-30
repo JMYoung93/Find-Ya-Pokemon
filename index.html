@@ -8,40 +8,34 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
     <!--Bulma CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-   
-    <link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
-                
     <!--regular css-->
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Document</title>
 </head>
-<header>
-    Find Ya Pokemon
-    <iframe src="https://giphy.com/embed/3oKIPoaRNoYOkBOZKE" width="800" height="160" frameBorder="0" class="giphy-embed"></iframe><p><a href="https://giphy.com/gifs/animation-pokemon-jump-3oKIPoaRNoYOkBOZKE"></a></p>
-</header>
 <body>
     <!--Left side of screen for search and history-->
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-3">
-    
     <div class="content-left">
         <form>
             <label for="search-pokemon">Search for a Pokemon:</label>
-            <div class="form-row">
-                <input id="search-pokemon" class="input is-large" type="text" placeholder="Find a pokemon..."></input>
+            <div class="form-row control">
+                <input id="search-pokemon" class ="input is-large is-danger" type = "text" placeholder="Find a pokemon..."></input>
                 
-                <button id="search-button" type="submit"><i class="button is-success is-loading">🔍</i></button>
+                <button id="search-button" type="submit"><i class="fas fa-search button is-dark"></i></button>
             </div>
         </form>
         <!--Search history section-->
+<<<<<<< HEAD
         <ul id="search-history" class="container"></ul>
                 </div>
             </div>  
         </div>
     </section>
         <div id="search-history" class=""></div>
+=======
+        <div id="search-history" class="">
+            <h2>Recent searches:</h2>
+        </div>
+>>>>>>> 00394310e1689bf097e012b128ebf1f9c3b915ab
     </div>
     <!--Holds current information for the pokemon being searched largest portion of screen-->
     <div id="current-pokemon" class="container">
