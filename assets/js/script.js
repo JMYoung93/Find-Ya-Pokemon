@@ -2,7 +2,7 @@
 var TCGAPI = "a91c497f-ee1d-402a-b493-ceff6564f7bb"
 //Variable holds searched pokemon name
 var searchedPokemon;
-var pokeButtons = [];
+
 var previousPokemonContainer = document.querySelector("#search-history");
 //Conversions for API info to Freedom Units (Amurica!)
 const decimeterToInches = 3.94;
@@ -150,6 +150,7 @@ function addToTeam(){
         localStorage.setItem("cardCounter", cardCounter)
         var cardEl = document.createElement("div")
         cardEl.setAttribute("class", "card")
+
         var pokeName = document.createElement('h2')
         var name = data.name
         name = name.charAt(0).toUpperCase() + name.substring(1)
@@ -157,6 +158,7 @@ function addToTeam(){
         cardEl.append(pokeName)
 
         var cardImgEl = document.createElement("img")
+        cardImgEl.setAttribute('class', 'card-image');
         var imgSource = data.sprites.front_default
         var cardItemEl = document.createElement("li")
         cardEl.setAttribute("id", "pokeCard")
@@ -269,6 +271,7 @@ function makeTeam(){
         var newSpriteEl = document.createElement('img')
         var newImgSource = cardTeamHistory[i].sprite
         newSpriteEl.setAttribute('src', newImgSource)
+        newSpriteEl.setAttribute('class', "image")
         newCardEl.append(newSpriteEl)
 
         var savedAttackList = document.createElement('ul')
@@ -323,25 +326,7 @@ function makeTeam(){
     }
 }
 
-$("#search-button").on("click",function(event){
-    console.log("Search Click Success");
-    event.preventDefault();
-    searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();
-    $("#current-pokemon").empty();
-    getPokemonData(searchedPokemon);
-})
 
-$('#search-history').on('click', function(event){
-    console.log(event.target.textContent)
-    var btnText = event.target.textContent
-    if(btnText === ""){
-        console.log('nothing')
-    }
-    else{
-        getPokemonData(btnText) 
-    }
-    
-})
 var searchHistory = []
 var cardTeamHistory =[]
 function initialLoad(){
@@ -356,13 +341,16 @@ function initialLoad(){
 }
 
 initialLoad()
+
 function makeButtons() {
     $('#search-history').text('')
     for (var i = 0; i < searchHistory.length; i++) {
             var newBtnEl = document.createElement("button");
             // var listItemEl = document.createElement('btn')
+            newBtnEl.setAttribute('class', 'button is-fullwidth is-rounded');
             searchedPokemon = searchHistory[i]
             if(searchedPokemon){
+                searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
                 newBtnEl.textContent = searchedPokemon
                 newBtnEl.setAttribute('id', 'historyBtn')
                 newBtnEl.setAttribute('class', "button is-fullwidth")
@@ -410,7 +398,32 @@ function savedPokemon (newPokemon) {
     }) 
 }
 
-
-
 makeButtons()
 makeTeam()
+
+$("#search-button").on("click",function(event){
+    console.log("Search Click Success");
+    event.preventDefault();
+    searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();
+    $("#current-pokemon").empty();
+    getPokemonData(searchedPokemon);
+})
+
+$('#search-history').on('click', function(event){
+    console.log(event.target)
+    var btnText = event.target.textContent
+    var btnEl = event.target
+    
+    if(btnText === ""){
+        console.log('nothing')
+    }
+    else{
+        btnText = btnText.toLowerCase();
+        console.log(btnText);
+        getPokemonData(btnText) 
+    }
+    
+})
+
+
+
