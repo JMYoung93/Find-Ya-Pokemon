@@ -31,4 +31,14 @@
 #search-pokemon{
     display:flex;
     display: inline;
+
+
+}
+
+.h1{
+    margin: 10%;
+    padding: 10px;
+
+
+
 }
