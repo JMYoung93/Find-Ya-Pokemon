@@ -20,24 +20,23 @@ function getPokemonData(newPokemon) {
     var TCGURL = "https://api.pokemontcg.io/v2/cards?q=name:" + searchedPokemon + "&pageSize=1";
 
     savedPokemon(searchedPokemon)
-
+    
 
     //API call to Poke API first. Note the poke in front of variable names
     fetch(pokeApiUrl)
         .then(function (pokeresponse) {
-            if (pokeresponse.status === 404) {
+            if(pokeresponse.status === 404){
                 alert("Pokemon name does not exist, check your spelling");
-            }
+            } 
 
-
+            
             return pokeresponse.json();
         })
         .then(function (pokedata) {
             console.log(pokedata);
             //API call to TCG API. Note the tcg in front if variable names 
             fetch(TCGURL)
-                .then(function (tcgresponse) {
-                    return tcgresponse.json()
+                .then(function (tcgresponse) {return tcgresponse.json() 
                 }).then(function (tcgdata) {
                     console.log(tcgdata);
 
@@ -47,7 +46,7 @@ function getPokemonData(newPokemon) {
 
                     //Trading Card Game image
                     var currentImgEl = document.createElement('img');
-                    currentImgEl.setAttribute('src', tcgdata.data[0].images.small);
+                    currentImgEl.setAttribute('src',tcgdata.data[0].images.small);
                     TCGCardDivEl.append(currentImgEl);
                     TCGCardDivEl.setAttribute('style', 'display: inline');
 
@@ -69,21 +68,21 @@ function getPokemonData(newPokemon) {
                     //Sprite image
                     var spriteImgEl = document.createElement('img');
                     var iconSource = pokedata.sprites.front_default
-                    spriteImgEl.setAttribute('src', iconSource);
+                    spriteImgEl.setAttribute('src',iconSource);
                     currentDivEl.append(spriteImgEl);
-
+                    
                     //Type
                     var infoListEl = document.createElement('ul');
                     var typeListItemEl = document.createElement('li');
                     var pokeType = pokedata.types[0].type.name.toString();
-                    pokeType = pokeType.charAt(0).toUpperCase() + pokeType.substring(1);
+                    pokeType =  pokeType.charAt(0).toUpperCase() + pokeType.substring(1);
                     typeListItemEl.textContent = "Type: " + pokeType;
                     infoListEl.append(typeListItemEl);
 
                     //Height Cvonerted Decimeter to inches. Total inches to Ft/In
                     var heightListItemEl = document.createElement('li');
                     var pokeHeight = (pokedata.height * decimeterToInches)
-                    heightListItemEl.textContent = "Height: " + pokeHeight + " In or " + Math.floor(pokeHeight / 12) + " Ft " + Math.round(pokeHeight % 12) + " In"
+                    heightListItemEl.textContent = "Height: " + pokeHeight + " In or " + Math.floor(pokeHeight/12) + " Ft " + Math.round(pokeHeight % 12) + " In"
                     infoListEl.append(heightListItemEl)
 
                     //Weight Converted hectograms to pounds
@@ -117,7 +116,7 @@ function getPokemonData(newPokemon) {
                     infoListEl.append(addToTeamBtn);
 
                     //Event listener to add to team button
-                    addToTeamBtn.addEventListener("click", function (event) {
+                    addToTeamBtn.addEventListener("click", function(event){
                         event.preventDefault();
                         addToTeam();
                     })
@@ -128,9 +127,9 @@ function getPokemonData(newPokemon) {
                     $("#current-pokemon").append(currentDivEl);
 
                 })
-
+            
         })
-
+    
 }
 
 
@@ -144,7 +143,7 @@ function addToTeam(){
     searchedPokemon = $('#pokeHeader').text().toLowerCase().trim()
     var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
 
-    fetch(pokeApiUrl).then(function (response) {
+    fetch(pokeApiUrl).then(function (response){
         return response.json()
     }).then(function(data){
         if (cardCounter < maxTeamSize){
@@ -221,10 +220,15 @@ function addToTeam(){
                 }
             })
 
-            attackList.append(removeBtn)
-
-            savedTeamCards(data.name, imgSource, pokeAttack1, pokeAttack2, pokeAttack3, pokeAttack4)
+            cardTeamHistory = tempTeam
+            localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
+        event.target.parentElement.parentElement.remove()
+        console.log($('#pokePick').children())
+        console.log(event.target.parentElement.firstChild.textContent)
         })
+
+        attackList.append(removeBtn)
+
         savedTeamCards(data.name, imgSource, pokeAttack1, pokeAttack2, pokeAttack3, pokeAttack4)
     } else{alert("team size cannot exceed 6 pokemon")}  
     })
@@ -241,19 +245,19 @@ function savedTeamCards(newName, newSprite, move1, move2, move3, move4) {
     }
 
     searchedPokemon = newName
-
-    if (!cardTeamHistory.includes(pokeCards)) {
+    
+    if(!cardTeamHistory.includes(pokeCards)){
         cardTeamHistory.push(pokeCards)
         localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
-
-    }
+        
+    }     
 }
 
-function makeTeam() {
+function makeTeam(){
     $('#pokePick').text('')
     cardCounter = localStorage.getItem("cardCounter")
 
-    for (var i = 0; i < cardTeamHistory.length; i++) {
+    for(var i = 0; i < cardTeamHistory.length; i++){
         var newCardEl = document.createElement('div')
         newCardEl.setAttribute('class', 'card')
         newCardEl.setAttribute('id', 'pokeCard')
@@ -274,21 +278,6 @@ function makeTeam() {
         var savedAttackList = document.createElement('ul')
 
         var newAttackLi1 = document.createElement('li')
-<<<<<<< HEAD
-        newAttackLi1.textContent = "#1: " + cardTeamHistory[i].moveOne
-        savedAttackList.append(newAttackLi1)
-
-        var newAttackLi2 = document.createElement('li')
-        newAttackLi2.textContent = "#2: " + cardTeamHistory[i].moveTwo
-        savedAttackList.append(newAttackLi2)
-
-        var newAttackLi3 = document.createElement('li')
-        newAttackLi3.textContent = "#3: " + cardTeamHistory[i].moveThree
-        savedAttackList.append(newAttackLi3)
-
-        var newAttackLi4 = document.createElement('li')
-        newAttackLi4.textContent = "#4: " + cardTeamHistory[i].moveFour
-=======
         newAttackLi1.textContent =" 1: " + cardTeamHistory[i].moveOne
         savedAttackList.append(newAttackLi1)
 
@@ -302,7 +291,6 @@ function makeTeam() {
 
         var newAttackLi4 = document.createElement('li')
         newAttackLi4.textContent =" 4: " + cardTeamHistory[i].moveFour
->>>>>>> 3192f02038743dd8077dd67b15332e3b1f21d30c
         savedAttackList.append(newAttackLi4)
 
         var removeBtn = document.createElement('button')
@@ -314,10 +302,10 @@ function makeTeam() {
             localStorage.setItem("cardCounter", cardCounter)
             //get the pokemon name 
             var deleteThisPokemon = event.target.getAttribute("pokemonName")
-
+            
             var tempTeam = []
-            cardTeamHistory.forEach(function (pokemon) {
-                if (pokemon.name !== deleteThisPokemon) {
+            cardTeamHistory.forEach(function(pokemon){ 
+                if(pokemon.name !== deleteThisPokemon ){
                     tempTeam.push(pokemon)
                 }
             })
@@ -327,10 +315,10 @@ function makeTeam() {
             localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
             // check if pokemon is in local storage
             // if it is delete it 
-            console.log('Remove Success')
-            event.target.parentElement.parentElement.remove()
+        console.log('Remove Success')
+        event.target.parentElement.parentElement.remove()
         })
-
+        
         savedAttackList.append(removeBtn)
 
         newCardEl.append(savedAttackList)
@@ -341,14 +329,14 @@ function makeTeam() {
 
 
 var searchHistory = []
-var cardTeamHistory = []
-function initialLoad() {
+var cardTeamHistory =[]
+function initialLoad(){
     var pokemonsSearchedBefore = localStorage.getItem("searchHistory")
-    if (pokemonsSearchedBefore) {
+    if(pokemonsSearchedBefore){
         searchHistory = JSON.parse(pokemonsSearchedBefore)
     }
     var teamSearchedBefore = localStorage.getItem("cardHistory")
-    if (teamSearchedBefore) {
+    if(teamSearchedBefore){
         cardTeamHistory = JSON.parse(teamSearchedBefore)
     }
 }
@@ -377,41 +365,38 @@ function makeButtons() {
            
             
         }
-
-
-    
-    console.log($("#search-history").children())
-    for (var i = 0; i < $('#search-history').children().length; i++) {
-        if ($('#search-history').children()[i].textContent === '') {
+        console.log($("#search-history").children())
+        for(var i = 0; i < $('#search-history').children().length; i++) {
+        if($('#search-history').children()[i].textContent === ''){
             $('#search-history').children()[i].remove()
             // console.log($('#search-history').children()[i])
 
-
+       
         }
-    }
-
+    }    
+   
 
 }
-function savedPokemon(newPokemon) {
+function savedPokemon (newPokemon) {
     searchedPokemon = newPokemon;
 
     var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
 
-    fetch(pokeApiUrl).then(function (response) {
-        if (response.status === 404) {
+    fetch(pokeApiUrl).then(function(response){
+        if(response.status === 404) {
             console.log('something')
         } else {
             console.log(searchHistory.includes(searchedPokemon))
-            if (!searchHistory.includes(searchedPokemon)) {
+            if(!searchHistory.includes(searchedPokemon)){
                 searchHistory.push(searchedPokemon)
-                makeButtons()
-                localStorage.setItem("searchHistory", JSON.stringify(searchHistory))
-                console.log('something2')
-                var pokeExists = false
+             makeButtons()
+             localStorage.setItem("searchHistory", JSON.stringify(searchHistory))
+            console.log('something2')
+            var pokeExists = false   
             }
-
+        
         }
-    })
+    }) 
 }
 
 makeButtons()
@@ -431,21 +416,18 @@ $("#search-button").on("click",function(event){
     getPokemonData(searchedPokemon);
 })
 
-$('#search-history').on('click', function (event) {
+$('#search-history').on('click', function(event){
     console.log(event.target)
     var btnText = event.target.textContent
     var btnEl = event.target
-
-    if (btnText === "") {
+    
+    if(btnText === ""){
         console.log('nothing')
     }
-    else {
+    else{
         btnText = btnText.toLowerCase();
         console.log(btnText);
-        getPokemonData(btnText)
+        getPokemonData(btnText) 
     }
-
+    
 })
-
-
-
