@@ -17,14 +17,16 @@
     <div class="content-left">
         <form>
             <label for="search-pokemon">Search for a Pokemon:</label>
-            <div class="form-row">
-                <input id="search-pokemon" placeholder="Find a pokemon..."></input>
+            <div class="form-row control">
+                <input id="search-pokemon" class ="input is-large is-danger" type = "text" placeholder="Find a pokemon..."></input>
                 
-                <button id="search-button" type="submit"><i class="fas fa-search"></i></button>
+                <button id="search-button" type="submit"><i class="fas fa-search button is-dark"></i></button>
             </div>
         </form>
         <!--Search history section-->
-        <div id="search-history" class=""></div>
+        <div id="search-history" class="">
+            <h2>Recent searches:</h2>
+        </div>
     </div>
     <!--Holds current information for the pokemon being searched largest portion of screen-->
     <div id="current-pokemon" class="container">

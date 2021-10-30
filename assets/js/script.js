@@ -148,10 +148,12 @@ function addToTeam(){
         cardEl.setAttribute("class", "card")
 
         var pokeName = document.createElement('h2')
+        pokeName.setAttribute('class', 'card-header');
         pokeName.textContent = data.name
         cardEl.append(pokeName)
 
         var cardImgEl = document.createElement("img")
+        cardImgEl.setAttribute('class', 'card-image');
         var imgSource = data.sprites.front_default
         var cardItemEl = document.createElement("li")
         cardEl.setAttribute("id", "pokeCard")
@@ -253,11 +255,13 @@ function makeTeam(){
 
         var newNameEl = document.createElement('h2')
         newNameEl.textContent = cardTeamHistory[i].name
+        newNameEl.setAttribute('class', 'card-header')
         newCardEl.append(newNameEl)
 
         var newSpriteEl = document.createElement('img')
         var newImgSource = cardTeamHistory[i].sprite
         newSpriteEl.setAttribute('src', newImgSource)
+        newSpriteEl.setAttribute('class', "image")
         newCardEl.append(newSpriteEl)
 
         var savedAttackList = document.createElement('ul')
@@ -308,33 +312,10 @@ function makeTeam(){
     }
 }
 
-$("#search-button").on("click",function(event){
-    console.log("Search Click Success");
-    event.preventDefault();
-    searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();
-    $("#current-pokemon").empty();
-    getPokemonData(searchedPokemon);
-})
 
-$('#search-history').on('click', function(event){
-    console.log(event.target.textContent)
-    var btnText = event.target.textContent
-    if(btnText === ""){
-        console.log('nothing')
-    }
-    else{
-        getPokemonData(btnText) 
-    }
-    
-})
 var searchHistory = []
-<<<<<<< HEAD
-var cardTeamHistory = []
-function initialLoad() {
-=======
 var cardTeamHistory =[]
 function initialLoad(){
->>>>>>> 36c05f9a7463a0d9a66aec33d3354a8343ff4a69
     var pokemonsSearchedBefore = localStorage.getItem("searchHistory")
     if(pokemonsSearchedBefore){
         searchHistory = JSON.parse(pokemonsSearchedBefore)
@@ -346,15 +327,19 @@ function initialLoad(){
 }
 
 initialLoad()
+
 function makeButtons() {
     $('#search-history').text('')
     for (var i = 0; i < searchHistory.length; i++) {
             var newBtnEl = document.createElement("button");
             // var listItemEl = document.createElement('btn')
+            newBtnEl.setAttribute('class', 'button is-fullwidth is-rounded');
             searchedPokemon = searchHistory[i]
             if(searchedPokemon){
+                searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
                 newBtnEl.textContent = searchedPokemon
                 newBtnEl.setAttribute('id', 'historyBtn')
+                newBtnEl.setAttribute('type', 'historyBtn')
             
         
                 // listItemEl.append(newBtnEl);
@@ -398,7 +383,32 @@ function savedPokemon (newPokemon) {
     }) 
 }
 
-
-
 makeButtons()
 makeTeam()
+
+$("#search-button").on("click",function(event){
+    console.log("Search Click Success");
+    event.preventDefault();
+    searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();
+    $("#current-pokemon").empty();
+    getPokemonData(searchedPokemon);
+})
+
+$('#search-history').on('click', function(event){
+    console.log(event.target)
+    var btnText = event.target.textContent
+    var btnEl = event.target
+    
+    if(btnText === ""){
+        console.log('nothing')
+    }
+    else{
+        btnText = btnText.toLowerCase();
+        console.log(btnText);
+        getPokemonData(btnText) 
+    }
+    
+})
+
+
+
