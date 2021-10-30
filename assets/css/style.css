@@ -18,9 +18,21 @@
     width: auto;
     box-sizing: auto;
 }
-#content-left{
+.content-left{
     height: 1vh;
-    border-style: solid;
-    width: 15%;
+    width: 25%;
     float: left;
+<<<<<<< HEAD
 }
+=======
+    display:flex;
+    display:block;
+}
+#historyBtn{
+    display: block;
+}
+#search-pokemon{
+    display:flex;
+    display: inline;
+}
+>>>>>>> cbd4b1e347bd6f927b3557bece38185da6bdc9a2
