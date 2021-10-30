@@ -371,6 +371,7 @@ function makeButtons() {
        
         }
     }    
+   
 
 }
 function savedPokemon (newPokemon) {
