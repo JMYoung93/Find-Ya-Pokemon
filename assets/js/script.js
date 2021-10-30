@@ -134,9 +134,10 @@ function getPokemonData(newPokemon) {
 
 //Add to team button. Creates a card and adds to the team
 //Lists 4 moves, appends 2 buttons, shuffle moves and remove from team
+var cardCounter = 0;
+const maxTeamSize = 6;
 function addToTeam(){
-    var cardCounter = 0;
-    const maxTeamSize = 6;
+   
     console.log("Add Button Click Success");
     searchedPokemon = $('#pokeHeader').text().toLowerCase().trim()
     var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + searchedPokemon;
@@ -144,6 +145,9 @@ function addToTeam(){
     fetch(pokeApiUrl).then(function (response){
         return response.json()
     }).then(function(data){
+        if (cardCounter < maxTeamSize){
+        cardCounter++ 
+        localStorage.setItem("cardCounter", cardCounter)
         var cardEl = document.createElement("div")
         cardEl.setAttribute("class", "card")
 
@@ -204,6 +208,8 @@ function addToTeam(){
         removeBtn.setAttribute("class","delete is-medium")
         removeBtn.addEventListener('click', function(event){
         console.log('Remove Success')
+        cardCounter--
+        localStorage.setItem("cardCounter", cardCounter)
         var deleteThisPokemon = event.target.getAttribute("pokemonName")
             
             var tempTeam = []
@@ -223,7 +229,7 @@ function addToTeam(){
         attackList.append(removeBtn)
 
         savedTeamCards(data.name, imgSource, pokeAttack1, pokeAttack2, pokeAttack3, pokeAttack4)
-        
+    } else{alert("team size cannot exceed 6 pokemon")}  
     })
 }
 
@@ -248,6 +254,7 @@ function savedTeamCards(newName, newSprite, move1, move2, move3, move4) {
 
 function makeTeam(){
     $('#pokePick').text('')
+    cardCounter = localStorage.getItem("cardCounter")
 
     for(var i = 0; i < cardTeamHistory.length; i++){
         var newCardEl = document.createElement('div')
@@ -290,6 +297,8 @@ function makeTeam(){
         removeBtn.setAttribute("pokemonName", cardTeamHistory[i].name)
         removeBtn.setAttribute("class","delete is-medium")
         removeBtn.addEventListener('click', function(event){
+            cardCounter--
+            localStorage.setItem("cardCounter", cardCounter)
             //get the pokemon name 
             var deleteThisPokemon = event.target.getAttribute("pokemonName")
             
@@ -299,6 +308,7 @@ function makeTeam(){
                     tempTeam.push(pokemon)
                 }
             })
+            
 
             cardTeamHistory = tempTeam
             localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
