@@ -2,7 +2,7 @@
 var TCGAPI = "a91c497f-ee1d-402a-b493-ceff6564f7bb"
 //Variable holds searched pokemon name
 var searchedPokemon;
-var pokeButtons = [];
+
 var previousPokemonContainer = document.querySelector("#search-history");
 //Conversions for API info to Freedom Units (Amurica!)
 const decimeterToInches = 3.94;
@@ -148,14 +148,9 @@ function addToTeam(){
         cardEl.setAttribute("class", "card")
 
         var pokeName = document.createElement('h2')
-<<<<<<< HEAD
-        pokeName.setAttribute('class', 'card-header');
-        pokeName.textContent = data.name
-=======
         var name = data.name
         name = name.charAt(0).toUpperCase() + name.substring(1)
         pokeName.textContent = name
->>>>>>> cbd4b1e347bd6f927b3557bece38185da6bdc9a2
         cardEl.append(pokeName)
 
         var cardImgEl = document.createElement("img")
@@ -260,14 +255,9 @@ function makeTeam(){
         var newCardItemEl = document.createElement('li')
 
         var newNameEl = document.createElement('h2')
-<<<<<<< HEAD
-        newNameEl.textContent = cardTeamHistory[i].name
-        newNameEl.setAttribute('class', 'card-header')
-=======
         var name = cardTeamHistory[i].name
         name = name.charAt(0).toUpperCase() + name.substring(1)
         newNameEl.textContent = name
->>>>>>> cbd4b1e347bd6f927b3557bece38185da6bdc9a2
         newCardEl.append(newNameEl)
 
         var newSpriteEl = document.createElement('img')
