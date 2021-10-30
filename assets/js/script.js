@@ -175,7 +175,7 @@ function addToTeam(){
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack1 = data.moves[randomAttackIndex].move.name;
         pokeAttack1 = pokeAttack1.charAt(0).toUpperCase() + pokeAttack1.substring(1);
-        attackListItemEl1.textContent = "#1: " + pokeAttack1;
+        attackListItemEl1.textContent = " 1: " + pokeAttack1;
         attackList.append(attackListItemEl1)
 
         
@@ -183,7 +183,7 @@ function addToTeam(){
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack2 = data.moves[randomAttackIndex].move.name;
         pokeAttack2 = pokeAttack2.charAt(0).toUpperCase() + pokeAttack2.substring(1);
-        attackListItemEl2.textContent = "#2: " + pokeAttack2;
+        attackListItemEl2.textContent = " 2: " + pokeAttack2;
         attackList.append(attackListItemEl2)
 
         
@@ -191,7 +191,7 @@ function addToTeam(){
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack3 = data.moves[randomAttackIndex].move.name;
         pokeAttack3 = pokeAttack3.charAt(0).toUpperCase() + pokeAttack3.substring(1);
-        attackListItemEl3.textContent = "#3: " + pokeAttack3;
+        attackListItemEl3.textContent = " 3: " + pokeAttack3;
         attackList.append(attackListItemEl3)
 
         
@@ -199,7 +199,7 @@ function addToTeam(){
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack4 = data.moves[randomAttackIndex].move.name;
         pokeAttack4 = pokeAttack4.charAt(0).toUpperCase() + pokeAttack4.substring(1);
-        attackListItemEl4.textContent = "#4: " + pokeAttack4;
+        attackListItemEl4.textContent = " 4: " + pokeAttack4;
         attackList.append(attackListItemEl4)
 
         cardEl.append(attackList)
@@ -274,6 +274,7 @@ function makeTeam() {
         var savedAttackList = document.createElement('ul')
 
         var newAttackLi1 = document.createElement('li')
+<<<<<<< HEAD
         newAttackLi1.textContent = "#1: " + cardTeamHistory[i].moveOne
         savedAttackList.append(newAttackLi1)
 
@@ -287,6 +288,21 @@ function makeTeam() {
 
         var newAttackLi4 = document.createElement('li')
         newAttackLi4.textContent = "#4: " + cardTeamHistory[i].moveFour
+=======
+        newAttackLi1.textContent =" 1: " + cardTeamHistory[i].moveOne
+        savedAttackList.append(newAttackLi1)
+
+        var newAttackLi2 = document.createElement('li')
+        newAttackLi2.textContent =" 2: " + cardTeamHistory[i].moveTwo
+        savedAttackList.append(newAttackLi2)
+
+        var newAttackLi3 = document.createElement('li')
+        newAttackLi3.textContent =" 3: " + cardTeamHistory[i].moveThree
+        savedAttackList.append(newAttackLi3)
+
+        var newAttackLi4 = document.createElement('li')
+        newAttackLi4.textContent =" 4: " + cardTeamHistory[i].moveFour
+>>>>>>> 3192f02038743dd8077dd67b15332e3b1f21d30c
         savedAttackList.append(newAttackLi4)
 
         var removeBtn = document.createElement('button')
@@ -350,7 +366,7 @@ function makeButtons() {
                 searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
                 newBtnEl.textContent = searchedPokemon
                 newBtnEl.setAttribute('id', 'historyBtn')
-                newBtnEl.setAttribute('class', "button is-fullwidth is-rounded is-dark")
+                newBtnEl.setAttribute('class', "button is-fullwidth is-rounded is-dark is-outlined" )
             
         
                 // listItemEl.append(newBtnEl);
