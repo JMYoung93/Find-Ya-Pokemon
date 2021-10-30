@@ -112,7 +112,8 @@ function getPokemonData(newPokemon) {
                     var addToTeamBtn = document.createElement('button');
                     addToTeamBtn.textContent = "Add to team";
                     addToTeamBtn.setAttribute('type', 'button');
-                    addToTeamBtn.setAttribute('id', 'add-Btn');
+                    addToTeamBtn.setAttribute('class', 'button is-rounded is-dark is-outlined')
+                    addToTeamBtn.setAttribute('id','add-Btn');
                     infoListEl.append(addToTeamBtn);
 
                     //Event listener to add to team button
@@ -341,25 +342,28 @@ initialLoad()
 function makeButtons() {
     $('#search-history').text('')
     for (var i = 0; i < searchHistory.length; i++) {
-        var newBtnEl = document.createElement("button");
-        // var listItemEl = document.createElement('btn')
-        newBtnEl.setAttribute('class', 'button is-fullwidth is-rounded');
-        searchedPokemon = searchHistory[i]
-        if (searchedPokemon) {
-            searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
-            newBtnEl.textContent = searchedPokemon
-            newBtnEl.setAttribute('id', 'historyBtn')
-            newBtnEl.setAttribute('class', "button is-fullwidth")
-
-
-            // listItemEl.append(newBtnEl);
-
-            previousPokemonContainer.append(newBtnEl);
-            console.log(searchedPokemon);
+            var newBtnEl = document.createElement("button");
+            // var listItemEl = document.createElement('btn')
+            newBtnEl.setAttribute('class', 'button is-fullwidth is-rounded');
+            searchedPokemon = searchHistory[i]
+            if(searchedPokemon){
+                searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
+                newBtnEl.textContent = searchedPokemon
+                newBtnEl.setAttribute('id', 'historyBtn')
+                newBtnEl.setAttribute('class', "button is-fullwidth is-rounded is-dark")
+            
+        
+                // listItemEl.append(newBtnEl);
+        
+                previousPokemonContainer.append(newBtnEl);
+                console.log(searchedPokemon);
+            }
+           
+            
         }
 
 
-    }
+    
     console.log($("#search-history").children())
     for (var i = 0; i < $('#search-history').children().length; i++) {
         if ($('#search-history').children()[i].textContent === '') {
@@ -397,7 +401,13 @@ function savedPokemon(newPokemon) {
 makeButtons()
 makeTeam()
 
-$("#search-button").on("click", function (event) {
+$('#clear').on('click', function(event){
+    console.log('clear success')
+    localStorage.removeItem('searchHistory')
+    $('#search-history').text('')
+})
+
+$("#search-button").on("click",function(event){
     console.log("Search Click Success");
     event.preventDefault();
     searchedPokemon = $("#search-pokemon").val().toLowerCase().trim();

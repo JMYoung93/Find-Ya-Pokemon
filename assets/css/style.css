@@ -1,6 +1,7 @@
 *{
-    font-family: 'Pokemon Solid', sans-serif;
+    font-family: 'Pokemon Solid', sans-serif; 
 }
+
 #current-pokemon{                                
     display: flex;
     justify-content: space-evenly;
@@ -10,6 +11,7 @@ body{
     margin: 0%;
     color: black;
     font-size: 18px;
+    
 }
 #current-team{
     display:flex;
@@ -20,7 +22,9 @@ body{
     height: 35%;
     width: auto;
     background-color: orangered;
-}
+    padding-top: 300px;
+    
+} 
 #pokePick{
     display: flex;
     height: 100%;
@@ -45,4 +49,9 @@ body{
 .h1{
     margin: 10%;
     padding: 10px;
+
+
+
 }
+
+
