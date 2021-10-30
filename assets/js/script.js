@@ -111,6 +111,7 @@ function getPokemonData(newPokemon) {
                     var addToTeamBtn = document.createElement('button');
                     addToTeamBtn.textContent = "Add to team";
                     addToTeamBtn.setAttribute('type', 'button');
+                    addToTeamBtn.setAttribute('class', 'button is-rounded is-dark is-outlined')
                     addToTeamBtn.setAttribute('id','add-Btn');
                     infoListEl.append(addToTeamBtn);
 
@@ -353,7 +354,7 @@ function makeButtons() {
                 searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
                 newBtnEl.textContent = searchedPokemon
                 newBtnEl.setAttribute('id', 'historyBtn')
-                newBtnEl.setAttribute('class', "button is-fullwidth")
+                newBtnEl.setAttribute('class', "button is-fullwidth is-rounded is-dark")
             
         
                 // listItemEl.append(newBtnEl);
@@ -400,6 +401,12 @@ function savedPokemon (newPokemon) {
 
 makeButtons()
 makeTeam()
+
+$('#clear').on('click', function(event){
+    console.log('clear success')
+    localStorage.removeItem('searchHistory')
+    $('#search-history').text('')
+})
 
 $("#search-button").on("click",function(event){
     console.log("Search Click Success");

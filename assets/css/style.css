@@ -22,6 +22,7 @@ body{
     height: 35%;
     width: auto;
     background-color: orangered;
+    padding-top: 300px;
     
 } 
 #pokePick{
@@ -45,21 +46,14 @@ body{
     display:flex;
     display: inline;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 49e43ba053fdb7f059e732ea5d39fb3eb07b4429
 }
 
 .h1{
     margin: 10%;
     padding: 10px;
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 49e43ba053fdb7f059e732ea5d39fb3eb07b4429
 }
 
 
