@@ -1,19 +1,28 @@
-#current-pokemon{
+*{
+    font-family: 'Pokemon Solid', sans-serif;
+}
+#current-pokemon{                                
     display: flex;
     justify-content: space-evenly;
 }
-
+body{
+    background-color: orangered;
+    margin: 0%;
+    color: black;
+    font-size: 18px;
+}
 #current-team{
     display:flex;
-    justify-content: center; 
+    justify-content: center;
      /* float: right; */
     /* border-style: solid; */
     box-sizing: border-box;
     height: 35%;
     width: auto;
-} 
+    background-color: orangered;
+}
 #pokePick{
-    display: flex; 
+    display: flex;
     height: 100%;
     width: auto;
     box-sizing: auto;
@@ -22,23 +31,18 @@
     height: 1vh;
     width: 25%;
     float: left;
-    display:flex;
-    display:block;
 }
+    /* display:flex;
+    display:block;
+} */
 #historyBtn{
     display: block;
 }
 #search-pokemon{
     display:flex;
     display: inline;
-
-
 }
-
 .h1{
     margin: 10%;
     padding: 10px;
-
-
-
 }
