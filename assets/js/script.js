@@ -199,8 +199,9 @@ function addToTeam(){
         cardEl.append(attackList)
 
         var removeBtn = document.createElement('button')
-        removeBtn.textContent = "Remove"
+        //removeBtn.textContent = "Remove"
         removeBtn.setAttribute('pokemonName', data.name)
+        removeBtn.setAttribute("class","delete is-medium")
         removeBtn.addEventListener('click', function(event){
         console.log('Remove Success')
         var deleteThisPokemon = event.target.getAttribute("pokemonName")
@@ -251,7 +252,7 @@ function makeTeam(){
     for(var i = 0; i < cardTeamHistory.length; i++){
         var newCardEl = document.createElement('div')
         newCardEl.setAttribute('class', 'card')
-
+        newCardEl.setAttribute('id', 'pokeCard')
         var newCardItemEl = document.createElement('li')
 
         var newNameEl = document.createElement('h2')
@@ -285,8 +286,9 @@ function makeTeam(){
         savedAttackList.append(newAttackLi4)
 
         var removeBtn = document.createElement('button')
-        removeBtn.textContent = "Remove"
+        //removeBtn.textContent = "Remove"
         removeBtn.setAttribute("pokemonName", cardTeamHistory[i].name)
+        removeBtn.setAttribute("class","delete is-medium")
         removeBtn.addEventListener('click', function(event){
             //get the pokemon name 
             var deleteThisPokemon = event.target.getAttribute("pokemonName")
@@ -341,7 +343,7 @@ function makeButtons() {
                 searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
                 newBtnEl.textContent = searchedPokemon
                 newBtnEl.setAttribute('id', 'historyBtn')
-                newBtnEl.setAttribute('type', 'historyBtn')
+                newBtnEl.setAttribute('class', "button is-fullwidth")
             
         
                 // listItemEl.append(newBtnEl);
@@ -361,6 +363,7 @@ function makeButtons() {
        
         }
     }    
+   
 
 }
 function savedPokemon (newPokemon) {
