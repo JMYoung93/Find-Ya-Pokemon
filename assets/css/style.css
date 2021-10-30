@@ -7,7 +7,9 @@
     justify-content: space-evenly;
 }
 body{
-    background-color: orangered;
+    /* background-color: orangered; */
+    background-image: url(../images/pokeball.png);
+    background-size: auto 1000px;
     margin: 0%;
     color: black;
     font-size: 18px;
@@ -15,21 +17,23 @@ body{
 }
 #current-team{
     display:flex;
-    justify-content: center; 
+    justify-content: center;
      /* float: right; */
     /* border-style: solid; */
     box-sizing: border-box;
     height: 35%;
     width: auto;
-    background-color: orangered;
-    padding-top: 300px;
+    /* background-color: orangered; */
+    padding-top: 200px;
+    position: relative;
     
 } 
 #pokePick{
-    display: flex; 
+    display: flex;
     height: 100%;
     width: auto;
     box-sizing: auto;
+    position: absolute;
 }
 .content-left{
     height: 1vh;
@@ -45,15 +49,36 @@ body{
 #search-pokemon{
     display:flex;
     display: inline;
-
+    width: 75%;
+}
+h1{
+    font-size: 48px;
 }
 
-.h1{
-    margin: 10%;
-    padding: 10px;
-
-
+#header{
+   text-align: center;
+   -webkit-text-stroke: 2px blue;
+   color: yellow;
 
 }
+h2{
+    font-size: 24px;
+    color: yellow;
+    -webkit-text-stroke:1px blue;
+    
+}
 
+#pokeCard{
+    border: 1px solid black;
+    background-color: wheat;
+   
+}
 
+#clear{
+    -webkit-text-stroke:1px blue;
+    color: yellow;
+}
+
+#search-button{
+    height: 150%;
+}
