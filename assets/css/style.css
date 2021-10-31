@@ -25,7 +25,7 @@ body{
     width: auto;
     /* background-color: orangered; */
     padding-top: 200px;
-    position: relative;
+    
     
 } 
 #pokePick{
@@ -33,12 +33,14 @@ body{
     height: 100%;
     width: auto;
     box-sizing: auto;
-    position: absolute;
+    
 }
 .content-left{
     height: 1vh;
     width: 25%;
     float: left;
+    padding-bottom: 1px;
+    padding-right: 1px;
 }
     /* display:flex;
     display:block;
@@ -59,6 +61,7 @@ h1{
    text-align: center;
    -webkit-text-stroke: 2px blue;
    color: yellow;
+   padding-bottom: 5px;
 
 }
 h2{
