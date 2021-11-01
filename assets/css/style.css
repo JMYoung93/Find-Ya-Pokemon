@@ -22,7 +22,7 @@ body{
     /* border-style: solid; */
     box-sizing: border-box;
     height: 35%;
-    width: auto;
+    /* width: auto; */
     /* background-color: orangered; */
     padding-top: 200px;
     
@@ -40,6 +40,8 @@ body{
     float: left;
     padding-bottom: 1px;
     padding-right: 1px;
+    display:flex;
+    display:block;
 }
     /* display:flex;
     display:block;
@@ -82,5 +84,5 @@ h2{
 }
 
 #search-button{
-    height: 150%;
+    height: 100%;
 }
