@@ -1,7 +1,8 @@
+/* Element selector for all fonts */
 *{
     font-family: 'Pokemon Solid', sans-serif; 
 }
-
+/* Background image source and style */
 html { 
     background: url(../images/pokeball.png) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -9,27 +10,29 @@ html {
     -o-background-size: cover;
     background-size: cover;
   }
-
+/* Style for current pokemon section */
 #current-pokemon{                                
     display: flex;
     justify-content: space-evenly;
 }
+/* Element selector for body of page*/
 body{
     
     color: black;
     font-size: 18px;
     
 }
+/* Style for current team container  */
 #current-team{
     display:flex;
     position: fixed;
     bottom: 0;
     right: 25%;
     justify-content: center; 
-    
     height: 35%;
     width: auto;
 } 
+/* Style for pokemon team */
 #pokePick{
     display: flex;
     height: 100%;
@@ -37,26 +40,29 @@ body{
     box-sizing: auto;
     
 }
+/* Style for search bar and results */
 .content-left{
-    height: 1vh;
+    height: auto;
     width: 25%;
     float: left;
     padding-bottom: 1px;
     padding-right: 1px;
 }
-  
+/* Display properties for previously searched pokemon */
 #historyBtn{
     display: block;
 }
+/* Search bar and search button */
 #search-pokemon{
     display:flex;
     display: inline;
     width: 75%;
 }
+/* Element selector for main title of page */
 h1{
     font-size: 48px;
 }
-
+/* Id selector for header of whole page */
 #header{
    text-align: center;
    -webkit-text-stroke: 2px blue;
@@ -64,31 +70,24 @@ h1{
    padding-bottom: 5px;
 
 }
+/* Element selector for specific font sizes */
 h2{
     font-size: 24px;
     color: yellow;
     -webkit-text-stroke:1px blue;
     
 }
-
+/* Style for individual pokemon cards */
 #pokeCard{
     border: 1px solid black;
     background-color: wheat;
    
 }
-
+/* Style for anchor tag */
 #clear{
     -webkit-text-stroke:1px blue;
     color: yellow;
 }
 
-#search-button{
-    height: 150%;
-}
 
-@media screen and (min-width: 768px) {
-    body{
-        flex-direction: column;
-    }
-}
 
