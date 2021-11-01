@@ -2,30 +2,33 @@
     font-family: 'Pokemon Solid', sans-serif; 
 }
 
+html { 
+    background: url(../images/pokeball.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
 #current-pokemon{                                
     display: flex;
     justify-content: space-evenly;
 }
 body{
-    /* background-color: orangered; */
-    background-image: url(../images/pokeball.png);
-    background-size: auto 1000px;
-    margin: 0%;
+    
     color: black;
     font-size: 18px;
     
 }
 #current-team{
     display:flex;
-    justify-content: center;
-     /* float: right; */
-    /* border-style: solid; */
-    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    right: 25%;
+    justify-content: center; 
+    
     height: 35%;
     width: auto;
-    /* background-color: orangered; */
-    padding-top: 200px;
-    
 } 
 #pokePick{
     display: flex;
@@ -41,9 +44,7 @@ body{
     padding-bottom: 1px;
     padding-right: 1px;
 }
-    /* display:flex;
-    display:block;
-} */
+  
 #historyBtn{
     display: block;
 }
@@ -84,3 +85,10 @@ h2{
 #search-button{
     height: 150%;
 }
+
+@media screen and (min-width: 768px) {
+    body{
+        flex-direction: column;
+    }
+}
+
