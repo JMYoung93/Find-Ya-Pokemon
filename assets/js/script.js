@@ -149,27 +149,29 @@ function addToTeam(){
         if (cardCounter < maxTeamSize){
         cardCounter++ 
         localStorage.setItem("cardCounter", cardCounter)
+        //Card
         var cardEl = document.createElement("div")
         cardEl.setAttribute("class", "card")
-
+        //Header
         var pokeName = document.createElement('h2')
         var name = data.name
         name = name.charAt(0).toUpperCase() + name.substring(1)
         pokeName.textContent = name
         cardEl.append(pokeName)
-
+        //Sprite    
         var cardImgEl = document.createElement("img")
         cardImgEl.setAttribute('class', 'card-image');
         var imgSource = data.sprites.front_default
         var cardItemEl = document.createElement("li")
         cardEl.setAttribute("id", "pokeCard")
         cardImgEl.setAttribute('src', imgSource)
+        //Append to page
         cardEl.append(cardImgEl)
         cardItemEl.append(cardEl)
         $('#pokePick').append(cardItemEl)
-
+        //Attack List    
         var attackList = document.createElement('ul')
-
+        //Attack 1
         var attackListItemEl1 = document.createElement('li');
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack1 = data.moves[randomAttackIndex].move.name;
@@ -177,7 +179,7 @@ function addToTeam(){
         attackListItemEl1.textContent = " 1: " + pokeAttack1;
         attackList.append(attackListItemEl1)
 
-        
+        //Attack 2
         var attackListItemEl2 = document.createElement('li');
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack2 = data.moves[randomAttackIndex].move.name;
@@ -185,7 +187,7 @@ function addToTeam(){
         attackListItemEl2.textContent = " 2: " + pokeAttack2;
         attackList.append(attackListItemEl2)
 
-        
+        //Attack 3
         var attackListItemEl3 = document.createElement('li');
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack3 = data.moves[randomAttackIndex].move.name;
@@ -193,18 +195,17 @@ function addToTeam(){
         attackListItemEl3.textContent = " 3: " + pokeAttack3;
         attackList.append(attackListItemEl3)
 
-        
+        //Attack 4
         var attackListItemEl4 = document.createElement('li');
         var randomAttackIndex = Math.floor(Math.random() * data.moves.length);
         var pokeAttack4 = data.moves[randomAttackIndex].move.name;
         pokeAttack4 = pokeAttack4.charAt(0).toUpperCase() + pokeAttack4.substring(1);
         attackListItemEl4.textContent = " 4: " + pokeAttack4;
         attackList.append(attackListItemEl4)
-
+        //Append to page
         cardEl.append(attackList)
-
+        //Remove Button
         var removeBtn = document.createElement('button')
-        //removeBtn.textContent = "Remove"
         removeBtn.setAttribute('pokemonName', data.name)
         removeBtn.setAttribute("class","delete is-medium")
         removeBtn.addEventListener('click', function(event){
@@ -233,7 +234,7 @@ function addToTeam(){
     } else{alert("team size cannot exceed 6 pokemon")}  
     })
 }
-
+//Sets parameters for generated cards 
 function savedTeamCards(newName, newSprite, move1, move2, move3, move4) {
     var pokeCards = {
         name: newName,
@@ -252,55 +253,55 @@ function savedTeamCards(newName, newSprite, move1, move2, move3, move4) {
         
     }     
 }
-
+//Generates card, random attack list, name, and remove button for pokemon added to the team
 function makeTeam(){
     $('#pokePick').text('')
     cardCounter = localStorage.getItem("cardCounter")
 
     for(var i = 0; i < cardTeamHistory.length; i++){
+        //Card
         var newCardEl = document.createElement('div')
         newCardEl.setAttribute('class', 'card')
         newCardEl.setAttribute('id', 'pokeCard')
         var newCardItemEl = document.createElement('li')
-
+        //Header
         var newNameEl = document.createElement('h2')
         var name = cardTeamHistory[i].name
         name = name.charAt(0).toUpperCase() + name.substring(1)
         newNameEl.textContent = name
         newCardEl.append(newNameEl)
-
+        //Sprite
         var newSpriteEl = document.createElement('img')
         var newImgSource = cardTeamHistory[i].sprite
         newSpriteEl.setAttribute('src', newImgSource)
         newSpriteEl.setAttribute('class', "image")
         newCardEl.append(newSpriteEl)
-
+        //Attack List
         var savedAttackList = document.createElement('ul')
-
+        //List Item 1
         var newAttackLi1 = document.createElement('li')
         newAttackLi1.textContent =" 1: " + cardTeamHistory[i].moveOne
         savedAttackList.append(newAttackLi1)
-
+        //List Item 2
         var newAttackLi2 = document.createElement('li')
         newAttackLi2.textContent =" 2: " + cardTeamHistory[i].moveTwo
         savedAttackList.append(newAttackLi2)
-
+        //List Item 3
         var newAttackLi3 = document.createElement('li')
         newAttackLi3.textContent =" 3: " + cardTeamHistory[i].moveThree
         savedAttackList.append(newAttackLi3)
-
+        //List Item 4
         var newAttackLi4 = document.createElement('li')
         newAttackLi4.textContent =" 4: " + cardTeamHistory[i].moveFour
         savedAttackList.append(newAttackLi4)
-
+        //Remove Button
         var removeBtn = document.createElement('button')
-        //removeBtn.textContent = "Remove"
         removeBtn.setAttribute("pokemonName", cardTeamHistory[i].name)
         removeBtn.setAttribute("class","delete is-medium")
         removeBtn.addEventListener('click', function(event){
-            cardCounter--
-            localStorage.setItem("cardCounter", cardCounter)
-            //get the pokemon name 
+        cardCounter--
+        localStorage.setItem("cardCounter", cardCounter)
+         
             var deleteThisPokemon = event.target.getAttribute("pokemonName")
             
             var tempTeam = []
@@ -308,26 +309,20 @@ function makeTeam(){
                 if(pokemon.name !== deleteThisPokemon ){
                     tempTeam.push(pokemon)
                 }
-            })
-            
-
-            cardTeamHistory = tempTeam
-            localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
-            // check if pokemon is in local storage
-            // if it is delete it 
+            }) 
+        cardTeamHistory = tempTeam
+        localStorage.setItem("cardHistory", JSON.stringify(cardTeamHistory))
         console.log('Remove Success')
         event.target.parentElement.parentElement.remove()
         })
-        
+        //Append everything to page
         savedAttackList.append(removeBtn)
-
         newCardEl.append(savedAttackList)
         newCardItemEl.append(newCardEl)
         $('#pokePick').append(newCardItemEl)
     }
 }
-
-
+//Checks local storage for any previously stored pokemon for search history and selected team, initially loads local storage into two arrays
 var searchHistory = []
 var cardTeamHistory =[]
 function initialLoad(){
@@ -342,12 +337,11 @@ function initialLoad(){
 }
 
 initialLoad()
-
+//Creates buttons for every pokemon searched and appends the button underneath the search bar
 function makeButtons() {
     $('#search-history').text('')
     for (var i = 0; i < searchHistory.length; i++) {
             var newBtnEl = document.createElement("button");
-            // var listItemEl = document.createElement('btn')
             newBtnEl.setAttribute('class', 'button is-fullwidth is-rounded');
             searchedPokemon = searchHistory[i]
             if(searchedPokemon){
@@ -356,27 +350,18 @@ function makeButtons() {
                 newBtnEl.setAttribute('id', 'historyBtn')
                 newBtnEl.setAttribute('class', "button is-fullwidth is-rounded is-dark is-outlined" )
             
-        
-                // listItemEl.append(newBtnEl);
-        
                 previousPokemonContainer.append(newBtnEl);
                 console.log(searchedPokemon);
             }
-           
-            
         }
         console.log($("#search-history").children())
         for(var i = 0; i < $('#search-history').children().length; i++) {
         if($('#search-history').children()[i].textContent === ''){
             $('#search-history').children()[i].remove()
-            // console.log($('#search-history').children()[i])
-
-       
         }
     }    
-   
-
 }
+//Checks local storage for previously searched pokemon, keeps any that remain in local storage after refreshing the page
 function savedPokemon (newPokemon) {
     searchedPokemon = newPokemon;
 
@@ -401,13 +386,13 @@ function savedPokemon (newPokemon) {
 
 makeButtons()
 makeTeam()
-
+//Event listener for clear button in 'search history'
 $('#clear').on('click', function(event){
     console.log('clear success')
     localStorage.removeItem('searchHistory')
     $('#search-history').text('')
 })
-
+//Event listener for 'search button' 
 $("#search-button").on("click",function(event){
     console.log("Search Click Success");
     event.preventDefault();
@@ -415,19 +400,11 @@ $("#search-button").on("click",function(event){
     $("#current-pokemon").empty();
     getPokemonData(searchedPokemon);
 })
-
+//Event listener for search history buttons
 $('#search-history').on('click', function(event){
     console.log(event.target)
     var btnText = event.target.textContent
-    var btnEl = event.target
-    
-    if(btnText === ""){
-        console.log('nothing')
-    }
-    else{
-        btnText = btnText.toLowerCase();
-        console.log(btnText);
-        getPokemonData(btnText) 
-    }
-    
+    btnText = btnText.toLowerCase();
+    console.log(btnText);
+    getPokemonData(btnText) 
 })
