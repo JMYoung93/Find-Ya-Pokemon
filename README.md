@@ -12,14 +12,14 @@ THEN I am presented information about that pokemon
 WHEN I view information for that pokemon
 THEN I am presented with the name, the sprite image, the trading card game image, weight, height, potential moves and an add to team button
 WHEN I click add to team
-THEN I am able to see that a card pops up with 4 moves and a sprite image of that poekmon and a remove button
+THEN I am able to see that a card pops up with 4 moves and a sprite image of that pokemon and a remove button
 WHEN I add more pokemon to the team
 THEN I will see them added to my team as well
 WHEN I view different pokemon
 THEN I am able to see a list of my recent searches
-WHEN I hit the remove button, then the pokemon will be reomved from my team
+WHEN I hit the remove button, then the pokemon will be removed from my team
 WHEN I click refresh
-THEN I will be able to still see all recetn searches and my current team
+THEN I will be able to still see all recent searches and my current team
 # Contributing
 PokeAPI: URL Link to website:https://docs.pokemontcg.io/
 Pokemon TCG API: URL Link to website: https://pokeapi.co/
@@ -32,18 +32,8 @@ Denny Jalate
 Complete by 11/01/2021
 # Screenshot
 Image URL located within project:
+
 ![alt text](assets/images/find-ya-pokemon.gif)
 # Link
 URL Link to website: https://yeetyameat.github.io/Find-Ya-Pokemon/
-Link to GitHub Repo: https://github.com/yeetyameat/Find-Ya-Pokemon (edited) 
-docs.pokemontcg.iodocs.pokemontcg.io
-Welcome to the Pokémon TCG API docs! | Pokémon TCG API Documentation
-Overview
-PokéAPIPokéAPI
-PokéAPI
-An open RESTful API for Pokémon data (15 kB)
-https://pokeapi.co/
-
-GitHubGitHub
-GitHub - yeetyameat/Find-Ya-Pokemon
-Contribute to yeetyameat/Find-Ya-Pokemon development by creating an account on GitHub. (33 kB)
+Link to GitHub Repo: https://github.com/yeetyameat/Find-Ya-Pokemon  
