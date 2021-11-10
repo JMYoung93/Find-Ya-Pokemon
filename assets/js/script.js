@@ -82,13 +82,13 @@ function getPokemonData(newPokemon) {
                     //Height Cvonerted Decimeter to inches. Total inches to Ft/In
                     var heightListItemEl = document.createElement('li');
                     var pokeHeight = (pokedata.height * decimeterToInches)
-                    heightListItemEl.textContent = "Height: " + pokeHeight + " In or " + Math.floor(pokeHeight/12) + " Ft " + Math.round(pokeHeight % 12) + " In"
+                    heightListItemEl.textContent = "Height: " + Math.round(pokeHeight) + " In or " + Math.floor(pokeHeight/12) + " Ft " + Math.round(pokeHeight % 12) + " In"
                     infoListEl.append(heightListItemEl)
 
                     //Weight Converted hectograms to pounds
                     var weightListItemEl = document.createElement('li');
                     var pokeWeight = (pokedata.weight * hectogramsToPounds);
-                    weightListItemEl.textContent = "Weight: " + pokeWeight + " Lbs";
+                    weightListItemEl.textContent = "Weight: " + Math.round(pokeWeight) + " Lbs";
                     infoListEl.append(weightListItemEl);
 
                     //Potential Move #1
@@ -111,7 +111,7 @@ function getPokemonData(newPokemon) {
                     var addToTeamBtn = document.createElement('button');
                     addToTeamBtn.textContent = "Add to team";
                     addToTeamBtn.setAttribute('type', 'button');
-                    addToTeamBtn.setAttribute('class', 'button is-rounded is-dark is-outlined')
+                    addToTeamBtn.setAttribute('class', 'button is-rounded is-dark')
                     addToTeamBtn.setAttribute('id','add-Btn');
                     infoListEl.append(addToTeamBtn);
 
@@ -348,7 +348,7 @@ function makeButtons() {
                 searchedPokemon = searchedPokemon.charAt(0).toUpperCase() + searchedPokemon.substring(1);
                 newBtnEl.textContent = searchedPokemon
                 newBtnEl.setAttribute('id', 'historyBtn')
-                newBtnEl.setAttribute('class', "button is-fullwidth is-rounded is-dark is-outlined" )
+                newBtnEl.setAttribute('class', "button is-fullwidth is-rounded is-dark" )
             
                 previousPokemonContainer.append(newBtnEl);
                 console.log(searchedPokemon);
