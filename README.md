@@ -35,5 +35,5 @@ Image URL located within project:
 
 ![alt text](assets/images/find-ya-pokemon.gif)
 # Link
-URL Link to website: https://yeetyameat.github.io/Find-Ya-Pokemon/
-Link to GitHub Repo: https://github.com/yeetyameat/Find-Ya-Pokemon  
+URL Link to website: https://jmyoung93.github.io/Find-Ya-Pokemon/
+Link to GitHub Repo: https://github.com/jmyoung93/Find-Ya-Pokemon  
